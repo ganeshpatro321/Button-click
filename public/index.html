@@ -7,6 +7,8 @@
 <body>
   <center/><button id="num">Click here</button>
     <h1 id="count"></h1>
+    <h2> Users Logged: </h2>
+    <h1 id="users"><h1>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
@@ -14,6 +16,9 @@
     var socket = io();
     $('#num').click( () => {
       socket.emit('click');
+  });
+  socket.on('userLogged', users => {
+  $('#users').html(users);
   });
   socket.on('clickChanged', clicks => {
   $('#count').html(clicks);
